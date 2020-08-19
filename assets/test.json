@@ -1,0 +1,14 @@
+{
+    "nodeOne":"John Doe",
+    "nodeTwo":"05/06/2020",
+    "nodeThree":777,
+    "nodeFour":[
+        {"elementOne":"B Street"},
+        {"elementTwo":"City"},
+        {"elementThree":"Area - 591323"},
+        {"elementFour":[
+            {"elementNine":"06/07/2020"},
+            {"elementTen":123}
+        ]}
+    ]
+    }

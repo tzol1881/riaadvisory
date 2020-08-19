@@ -1,0 +1,33 @@
+<form [formGroup]="form">
+  <div  *ngFor="let table of tableList; index as tableNumber">
+    <br>
+    <p-table [value]="dummyInputList">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let tables of table ;index as header">{{camelCaseToReadable(getKeys(table[header])[0])}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body">
+            <tr>
+                <td *ngFor="let inputList of table;index as rowData">
+                  <div [ngSwitch]='getInputType(getValues(table[rowData])[0])'>
+                    <div *ngSwitchCase="'string'">
+                        <app-string-input [controlKey]='getKeys(table[rowData])[0]' [form]="form"></app-string-input>
+                    </div>
+                    <div *ngSwitchCase="'number'">
+                        <app-number-input [controlKey]='getKeys(table[rowData])[0]' [form]="form"></app-number-input>
+                    </div>
+                    <div *ngSwitchCase="'array'" align='center'>
+                        {{buttonStatus(tableNumber + '' + rowData, tableNumber)}}
+                      <p-button [disabled]="buttonStatusArray[ tableNumber + '' + rowData ]" (onClick)='viewTable(getValues(table[rowData])[0],tableNumber + "" +rowData)' label="View table"></p-button>
+                    </div>
+                    <div *ngSwitchCase="'date'">
+                        <app-date-input [controlKey]='getKeys(table[rowData])[0]' [form]="form"></app-date-input>
+                    </div>
+                   </div>
+                </td>
+            </tr>
+        </ng-template>
+      </p-table>
+    </div>
+</form>

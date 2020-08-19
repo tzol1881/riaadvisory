@@ -1,0 +1,23 @@
+
+<form *ngIf="form" [formGroup]="form">
+    <div *ngFor="let key of getKeys(inputs)">
+        <br>
+      <strong>{{camelCaseToReadable(key)}}</strong>
+    <div [ngSwitch]='getInputType(inputs[key])'>
+      <div *ngSwitchCase="'string'">
+          <app-string-input [controlKey]='key' [form]="form"></app-string-input>
+      </div>
+      <div *ngSwitchCase="'number'">
+        <app-number-input [controlKey]='key' [form]="form"></app-number-input>
+        <br>
+      </div>
+      <div *ngSwitchCase="'date'">
+        <app-date-input [controlKey]='key' [form]="form"></app-date-input>
+      </div>
+      <div *ngSwitchCase="'array'">
+        <app-array-table [tables] = "inputs[key]" [form]="form"></app-array-table>
+      </div>
+    </div>
+    </div>
+    </form>
+    
